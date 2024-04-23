@@ -1,0 +1,47 @@
+﻿@model Coursaty.Models.Category
+@{
+    var title = "Create New Category";
+    if (Model.Id != 0)
+    {
+        title = "Update '" + Model.Name + "'";
+    }
+
+    ViewBag.Title = title;
+}
+
+<div class="categoryForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <form action="/Categories/Save" method="post">
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control input-lg", placeholder = "Category Name" })
+                        @Html.ValidationMessageFor(m => m.Name)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.Id)
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn siteBtn">@title</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="col-sm-7">
+                <div class="warningMsg">
+                    <h2>HI, Remember this</h2>
+                    <p class="lead">
+                        In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before the final copy is available. Wikipedia
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

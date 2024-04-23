@@ -1,0 +1,61 @@
+﻿@using Coursaty.Models
+
+@model Coursaty.Models.Category
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="categoryDetails">
+    <div class="container">
+
+
+        <div class="categoryBasicInfo">
+            <h2>@Model.Name Courses</h2>
+            <h5><b>@Model.Courses.Count()</b> Course</h5>
+        </div>
+
+        @if (User.IsInRole(RoleName.Admins) || User.IsInRole(RoleName.WorkTeam))
+        {
+            <div class="forAdmins text-center">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h4>
+                            Added By :
+                            <a href="/admins/UserAccount/@Model.UserId">@Model.User.FullName</a>
+                        </h4>
+                    </div>
+                    <div class="col-sm-6">
+                        <a href="/categories/Update/@Model.Id" class="btn siteBtn updateBtn">Update category</a>
+                    </div>
+                </div>
+            </div>
+        }
+
+        @if (Model.Courses.Count() == 0)
+        {
+            <div class="alert alert-info text-center">
+                <p class="lead">
+                    Sorry, We dont Find any Course related with this Category
+                </p>
+            </div>
+
+        }
+
+        <div class="courses">
+            <div class="row">
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="col-sm-4">
+                        <div class="course text-center">
+                            <a href="/Courses/CourseDetails/@course.Id"></a>
+                            <img src="@course.CoursePicture" alt="Course Picture" />
+                            <h4>@course.Title</h4>
+                            <span>@course.Category.Name</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,474 @@
+﻿:root {
+    --color1: #F7600E;
+    --color2: #3B434C;
+    --color3: #4e5964;
+}
+
+body {
+    background-color: var(--color2);
+    color:#fff;
+    /*background-color: #EBF2FB;*/
+}
+.siteBtn {
+    background-color: var(--color1);
+    border: 2px solid var(--color1);
+    color: #fff;
+    padding: 10px 30px;
+    min-width: 100px;
+    border-radius: 5px;
+    text-align: center;
+}
+.siteBtn:hover,
+.siteBtn:focus {
+    color: #fff;
+    border: 2px solid var(--color2);
+}
+form .siteBtn {
+    width: 100%;
+    font-weight: bold
+}
+form {
+    padding: 50px;
+    border-radius: 30px;
+    background-color: var(--color3);
+}
+.form-control {
+    background-color: var(--color2);
+    border-color: var(--color2);
+    color: #fff;
+}
+.field-validation-error {
+    color: orangered
+}
+.input-validation-error {
+    border: 1px solid orangered
+}
+.forAdmins {
+    background-color: var(--color3);
+    padding: 10px;
+    margin: 15px 0;
+}
+.forAdmins .categories {
+    margin: 50px 0;
+}
+.forAdmins .categories,
+.forAdmins .courses {
+    background-color: #EBF2FB;
+    padding: 0 20px;
+}
+.forAdmins .categories h3,
+.forAdmins .courses h3 {
+    padding: 30px;
+}
+.updateBtn {
+    background-color: var(--color2);
+    border-color: var(--color2);
+}
+.deleteBtn {
+    background-color: #ac2925;
+    border-color: #ac2925;
+}
+.overlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(59, 67, 76, .7);
+    padding: 70px 0;
+}
+/* start navbar */
+.navbar {
+    height: 70px;
+    padding-top: 7px;
+}
+.navbar .navbar-brand {
+    padding: 0;
+}
+.navbar .navbar-brand img {
+    height: 50px;
+}
+
+.navbar-default {
+    background-color: var(--color2);
+    border-bottom: 1px solid var(--color1);
+}
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #fff;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover, 
+.navbar-default .navbar-nav > .open > a:focus {
+    color: #fff;
+    background-color: var(--color2);
+}
+.navbar-right .dropdown-menu {
+    left: 0;
+    min-width: 200px;
+    background-color: var(--color2);
+    top: 124%;
+}
+.dropdown-menu .divider {
+    background-color: var(--color1);
+}
+.dropdown-menu > li > a {
+    color: #fff;
+    text-transform: capitalize;
+}
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: var(--color1);
+}
+.navbar #loginLink,
+.navbar #registerLink,
+.navbar #userFullName,
+.navbar #logoffLink {
+    background-color: var(--color1);
+    border: 2px solid var(--color1);
+    color: #fff;
+    margin-right: 15px;
+    margin-top: 8px;
+    padding-top: 6px;
+    padding-bottom: 7px;
+    min-width: 100px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.navbar #loginLink,
+.navbar #userFullName {
+    background-color: var(--color2);
+    color: #fff;
+    border-color: var(--color1);
+}
+
+.navbar #logoffLink {
+
+}
+/* end navbar */
+
+/* start footer */
+footer {
+    border-top: 2px solid var(--color1);
+    padding: 20px;
+}
+footer p {
+
+}
+/* end footer */
+
+
+/* start Home */
+.home .intro {
+    margin-top: -30px;
+    height: 770px;   
+    background-image: url("Images/intro.jpg");
+    background-size: cover;
+    color: #fff;
+}
+.home .intro .overlay {
+    padding-top: 100px;
+}
+.home .intro h1 {
+    font-size: 100px;
+    border: 6px solid var(--color1);
+    display: inline-block;
+    padding: 15px 50px;
+    font-weight: bold;
+    border-radius: 30px;
+    margin: 30px 0; 
+}
+.home .intro h1:first-letter {
+    color: var(--color1);
+}
+.home .intro p {
+    font-size: 25px;
+}
+.home .intro a {
+    display:inline-block;
+    background: none;
+    color: #fff;
+    padding: 10px 20px;
+    width: 220px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size: 18px;
+    transition: .5s ease
+}
+.home .intro a:hover {
+    background-color: var(--color1);
+    color: #fff;
+}
+.home .lastCourses {
+    padding: 50px;
+    background-color:var(--color2);
+    color:#fff;
+}
+.home .lastCourses h2 {
+    margin: 0 0 50px;
+    font-size: 55px;
+}
+.home .features {
+    color: #fff;
+    background-image: url("Images/cover3.png");
+    background-size: cover;
+    background-attachment: fixed;
+}   
+.home .features h2 {
+    margin: 20px 0 50px;
+}
+.home .features p {
+    margin: 0 0 70px;
+}
+.home .features .step i {
+    font-size: 100px;
+}
+
+.home .contact {
+    background-image: url("Images/cover1.jpg");
+    background-size: cover;
+    color:#fff;
+}
+.home .contact h2 {
+    font-size: 55px;
+    text-transform: capitalize
+}
+.home .socialIcons {
+    margin-top: 50px;
+}
+.home .socialIcons .icon a {
+    display:block;
+    padding: 30px 0;
+    font-size: 20px;
+    text-decoration: none;
+    border-radius: 30px;
+    color: #fff;
+    background-color: #000;
+}
+.home .socialIcons .linkedIn a {
+    background-color: #0a66c2
+}
+.home .socialIcons .facebook a {
+    background-color: #1877f2
+}
+.home .socialIcons .facebook a {
+    background-color: #1877f2
+}
+.home .socialIcons .twitter a {
+    background-color: #1da1f2
+}
+.home .socialIcons .youtube a {
+    background-color: #ff0000
+}
+.home .socialIcons .instagram a {
+    background-color: #c32aa3
+}
+.home .socialIcons .whatsapp a {
+    background-color: #25d366
+}
+
+/* end Home */
+/* start account */
+.accountForm .welcomeMsg {
+    color: var(--color1);
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.accountForm form {
+    width: 40%;
+    margin: 30px auto;
+}
+.accountForm .siteBtn {
+    margin: 20px 0;
+}
+/* end account */
+/*start categoryForm */
+.categories .category {
+    background: var(--color3);
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 150px;
+    max-height: 150px;
+}
+
+.categoryForm,
+.coursesForm {
+    
+}
+.coursesForm textarea {
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 142px;
+    max-height: 142px;
+}
+.coursesForm .courseImgContainer {
+    height: 400px;
+    background-color: var(--color3);
+}
+.coursesForm .courseImgContainer .coursePicture {
+    width: 100%;
+    height: 80%;
+}
+.courseImgContainer label b { 
+    font-size: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+.serverAlerts ul li {
+    font-weight: bold;
+}
+/* end categoryForm */
+/* start category Details */
+.categoryDetails .categoryBasicInfo {
+    border-bottom: 3px solid var(--color2);
+    margin-bottom: 20px;
+    background: var(--color3);
+    padding: 10px 0;
+}
+.categoryDetails h2,
+.categoryDetails h5 {
+    padding: 10px 15px;
+    margin: 0
+}
+/*end category Details */
+/* start corses */
+.courses .course {
+    background-color: var(--color3);
+    height: 300px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.courses .course h4 {
+    color: #fff;
+}
+.courses .course a {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+.courses .course img {
+    height: 80%;
+    width: 100%;
+}
+.courses .course span {
+    position: absolute;
+    top: 4px;
+    left: 3px;
+    color: #fff;
+    background-color: var(--color1);
+    padding: 5px 12px;
+}
+/* end corses */
+/* start corse Details*/
+
+.courseDetails {
+    padding-bottom: 30px;
+}
+.courseDetails .title {
+    background-color: var(--color3);
+    padding: 15px 20px;
+    margin: 0;
+}
+.courseDetails .courseInfo .mainInfo {
+    background-color: var(--color3);
+    margin: 20px 0;
+    padding: 20px;
+}
+.courseDetails .courseInfo .mainInfo h4 {
+
+}
+.courseDetails .courseInfo .aboutCourse h3 {
+    background-color: var(--color3);
+    margin-bottom: 10px;
+    padding: 13px;
+}
+.courseDetails .courseInfo .aboutCourse p {
+    background-color: var(--color3);
+    padding: 15px 30px;
+}
+
+.courseDetails .coursePicture {
+    height: 400px;
+}
+.courseDetails .coursePicture img {
+    width: 100%;
+    height: 100%;
+}
+.courseDetails .cards {
+    padding: 50px;
+    margin: 20px 0 0;
+    background-color: var(--color3);
+}
+.courseDetails .cards .item {
+    background-color: var(--color2);
+    color: #fff;
+    min-height: 150px;
+    line-height: 150px;
+}
+.courseDetails .cards .item a {
+    color: #fff;
+    display: inline-block;
+    font-size: 18px;
+}   
+
+/* end corse Details*/
+.userProfilePicture {
+    width: 150px;
+    height: 150px;
+}
+.user {
+    background-color: var(--color3);
+    padding: 15px 5px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+.users .info {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.users .user {
+    position: relative;
+}
+.users .user a {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 50001
+}
+
+/* start user Account */
+.userAccount {
+    padding: 50px 0;
+}
+.userAccount .info,
+.userAccount .basicInfo {
+    background-color: var(--color3);
+    padding: 50px 20px;
+}
+.list-group-item {
+    background-color: var(--color3);
+    border: 2px solid var(--color2);
+}
+.userAccount .controlBtns a,
+.userAccount .controlBtns label {
+    cursor: pointer;
+    margin: 10px;
+    font-weight:normal;
+}
+/* end user Account */

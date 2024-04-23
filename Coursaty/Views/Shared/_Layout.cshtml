@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Coursaty</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+
+    @Html.Partial("_Navbar")
+
+    <div class="content">
+        @RenderBody()
+    </div>
+
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            var navbarHeight = $(".navbar").outerHeight(),
+                footerHeight = $("footer").outerHeight(),
+                windowHeight = $(window).height(),  
+                contentHeight = windowHeight - (navbarHeight + footerHeight + 30);
+            console.log(navbarHeight);
+            console.log(footerHeight);
+            console.log(windowHeight);
+            console.log(contentHeight);
+            $("body").css("marginTop", navbarHeight + 30);
+
+
+            $(".content").css("minHeight", contentHeight);
+        });
+    </script>
+</body>
+</html>

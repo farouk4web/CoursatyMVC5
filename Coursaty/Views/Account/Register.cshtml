@@ -1,0 +1,48 @@
+﻿@model Coursaty.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Sign Up";
+}
+<div class="signUp accountForm text-center">
+    <div class="container">
+
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+        {
+            <h2>@ViewBag.Title.</h2>
+
+            <p class="welcomeMsg">Create an account</p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "FullName" })
+                @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.AntiForgeryToken()
+
+                <button type="submit" class="btn siteBtn">Create account</button>
+
+                <p>
+                    Already have an account?
+                    <a href="/account/login">
+                        <b>Sign In</b>
+                    </a>
+                </p>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

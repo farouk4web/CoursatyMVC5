@@ -1,0 +1,86 @@
+﻿@using Coursaty.Models
+@{
+    ApplicationDbContext _context = new ApplicationDbContext();
+    var categories = _context.Categories.ToList();
+}
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <a href="/Home" class="navbar-brand">
+                <img src="~/Content/Images/brand.png" alt="Coursaty" />
+            </a>
+        </div>
+        <div class="navbar-collapse collapse">
+
+            @Html.Partial("_LoginPartial")
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Categories <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        @if (categories.Count() == 0)
+                        {
+                            <li>
+                                <a>sorry, No Categories Yet</a>
+                            </li>
+                        }
+                        @foreach (var category in categories)
+                        {
+                            <li>
+                                <a href="/Categories/CategoryDetails/@category.Id">@category.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+
+                @if (User.IsInRole(RoleName.Admins) || User.IsInRole(RoleName.WorkTeam))
+                {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            Admin Menu <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+
+                            <li>
+                                <a href="/Courses/New">
+                                    <b>New Course</b>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/Categories/New">
+                                    <b>New Category</b>
+                                </a>
+                            </li>
+
+                            <li role="separator" class="divider"></li>
+
+                            <li>
+                                <a href="/Admins/index/">
+                                    <b>Admins</b>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="/Admins/Users/">
+                                    <b>Users</b>
+                                </a>
+                            </li>
+                            <li role="separator" class="divider"></li>
+
+                        </ul>
+                    </li>
+                }
+            </ul>
+
+        </div>
+    </div>
+</div>

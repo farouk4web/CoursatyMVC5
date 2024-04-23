@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Coursaty.Models.Course>
+@{
+    ViewBag.Title = "all Courses";
+}
+
+<div class="courses">
+    <div class="container">
+
+        @if (Model.Count() == 0)
+        {
+            <p class="lead">
+                Sorry We dont Add any Course yet
+            </p>
+        }
+
+
+        <div class="row">
+            @foreach (var course in Model)
+            {
+                <div class="col-sm-4">
+                    <div class="course text-center">
+                        <a href="/Courses/CourseDetails/@course.Id"></a>
+                        <img src="@course.CoursePicture" alt="Course Picture" />
+                        <h4>@course.Title</h4>
+                        <span>@course.Category.Name</span>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

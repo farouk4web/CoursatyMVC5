@@ -1,0 +1,104 @@
+﻿@model Coursaty.ViewModels.CoursesFormViewModel
+@{
+    var title = "Create New Course";
+    var coursePictureSource = "/Content/Images/coursePhoto.png";
+    var newOrUpdate = "n";
+
+    if (Model.Course.Id != 0)
+    {
+        title = "Update '" + Model.Course.Title + "'";
+        coursePictureSource = Model.Course.CoursePicture;
+        newOrUpdate = "u";
+    }
+
+    ViewBag.Title = title;
+}
+
+<div class="coursesForm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+                <form data-newOrUpdate="@newOrUpdate" action="/Courses/Save" method="post" id="courseForm" enctype="multipart/form-data">
+
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger alert alert-danger serverAlerts" })
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Course.Title, new { @class = "form-control input-lg", placeholder = "Title ... Learn C# In Arabic" })
+                        @Html.ValidationMessageFor(m => m.Course.Title)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Course.Instructor, new { @class = "form-control input-lg", placeholder = "Instructor ... Osama Mohammed" })
+                        @Html.ValidationMessageFor(m => m.Course.Instructor)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextBoxFor(m => m.Course.Link, new { @class = "form-control input-lg", placeholder = "Link ... https://www.youtube.com" })
+                        @Html.ValidationMessageFor(m => m.Course.Link)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.DropDownListFor(m => m.Course.CategoryId, new SelectList(Model.Categories, "Id", "name"), "Select Course Category", new { @class = "form-control input-lg" })
+                        @Html.ValidationMessageFor(m => m.Course.CategoryId)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.TextAreaFor(m => m.Course.About, new { @class = "form-control input-lg", placeholder = "About... this course will learn you everything about......" })
+                        @Html.ValidationMessageFor(m => m.Course.About)
+                    </div>
+
+                    <div class="form-group">
+                        <input type="file" id="coursePicture" name="coursePicture" class="hidden" />
+
+                        <div class="alert alert-danger clientSideAlert" style="display: none">
+                            <p class="lead">
+                                You Should choose course photo first
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.HiddenFor(m => m.Course.Id)
+                        @Html.AntiForgeryToken()
+                        <button type="submit" class="btn siteBtn">@title</button>
+                    </div>
+                </form>
+            </div>
+            
+            <div class="col-sm-5">
+                <div class="courseImgContainer text-center">
+                    <img src="@coursePictureSource" id="picturePreview" class="coursePicture"/>
+                    <label for="coursePicture">
+                        <b class="btn siteBtn">
+                            <i class="glyphicon glyphicon-upload"></i> Upload Photo
+                        </b>
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+            $("#coursePicture").on("change", function (e) {
+                var coursePictureSource = URL.createObjectURL(e.target.files[0]);
+                $("#picturePreview").attr("src", coursePictureSource);
+                $(".alert").hide();
+            });
+
+            $(".coursesForm form").on("submit", function (e) {
+                if ($("#coursePicture").val() == "" && $(this).attr("data-newOrUpdate") == "n") {
+                    e.preventDefault();
+                    $(".clientSideAlert").show();
+                }
+            });
+
+        });
+    </script>
+}

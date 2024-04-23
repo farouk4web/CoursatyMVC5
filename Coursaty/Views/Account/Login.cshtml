@@ -1,0 +1,53 @@
+﻿@using Coursaty.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Sign in";
+}
+
+<div class="login accountForm text-center">
+    <div class="container">
+
+        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+        {
+            <h2>@ViewBag.Title</h2>
+            <p class="welcomeMsg">(^_^) So Happy to See You again</p>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "Email" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.AntiForgeryToken()
+                
+                <button type="submit" class="btn siteBtn">Sign In</button>
+
+                <a href="/account/ForgotPassword/">
+                    <b>Forgot Password?</b>
+                </a>
+                <p>
+                    Haven’t got an account?
+                    <a href="/account/Register">
+                        <b>Sign Up</b>
+                    </a>
+                </p>
+            </div>
+        }
+
+    </div>
+</div>
+
+
+@*<section id="socialLoginForm">
+    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,124 @@
+﻿@model Coursaty.ViewModels.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<div class="home">
+
+    <div class="intro text-center">
+        <div class="overlay">
+            <div class="container">
+                <h1>Coursaty</h1>
+                <p class="lead">
+                    all courses you need, we collect it in one place
+                </p>
+                <p class="lead">
+                    Don`t warry all courses collected by specialist People to You
+                </p>
+
+                <a href="/Courses/">Courses</a>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="features text-center">
+        <div class="overlay">
+            <div class="container">
+                <h2>What makes us the best</h2>
+                <p class="lead">
+                    This is because we use certain criteria that may be strict at times to choose the course and these are the steps that we follow when uploading a new Course
+                </p>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="step">
+                            <i class="glyphicon glyphicon-lamp"></i>
+                            <h4>stepName</h4>
+                            <p>
+                                This is because we use certain criteria that may be strict at times .
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="step">
+                            <i class="glyphicon glyphicon-send"></i>
+                            <h4>stepName</h4>
+                            <p>
+                                This is because we use certain criteria that may be strict at times .
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="step">
+                            <i class="glyphicon glyphicon-education"></i>
+                            <h4>stepName</h4>
+                            <p>
+                                This is because we use certain criteria that may be strict at times .
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="step">
+                            <i class="glyphicon glyphicon-gift"></i>
+                            <h4>stepName</h4>
+                            <p>
+                                This is because we use certain criteria that may be strict at times .
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="lastCourses courses text-center">
+        <d iv class="container">
+            <h2>Latest Courses Added</h2>
+            <div class="row">
+                @foreach (var course in Model.LastCourses)
+                {
+                    <div class="col-sm-4">
+                        <div class="course text-center">
+                            <a href="/Courses/CourseDetails/@course.Id"></a>
+                            <img src="@course.CoursePicture" alt="Course Picture" />
+                            <h4>@course.Title</h4>
+                            <span>@course.Category.Name</span>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+
+    <div class="contact">
+        <div class="overlay">
+            <div class="container">
+                <h2>we are here</h2>
+                <p class="lead">
+                    you can find us all the day, all social accounts is here
+                </p>
+
+                <div class="socialIcons row text-center">
+                    <div class="icon linkedIn col-xs-2">
+                        <a href="#">LinkedIn</a>
+                    </div>
+                    <div class="icon facebook col-xs-2">
+                        <a href="#">Facebook</a>
+                    </div>
+                    <div class="icon twitter col-xs-2">
+                        <a href="#">Twitter</a>
+                    </div>
+                    <div class="icon youtube col-xs-2">
+                        <a href="#">Youtube</a>
+                    </div>
+                    <div class="icon instagram col-xs-2">
+                        <a href="#">Instagram</a>
+                    </div>
+                    <div class="icon whatsapp col-xs-2">
+                        <a href="#">Whatsapp</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

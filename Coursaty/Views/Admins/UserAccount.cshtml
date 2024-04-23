@@ -1,0 +1,190 @@
+﻿@using Coursaty.Models
+@using Microsoft.AspNet.Identity;
+
+@model Coursaty.ViewModels.UserAccountViewModel
+@{
+    ViewBag.Title = Model.User.FullName;
+}
+
+<div class="userAccount">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="info text-center">
+                    <img src="@Model.User.ProfilePicture" class="img-thumbnail img-circle userProfilePicture" alt="User picture" />
+                    <h2>@Model.User.FullName</h2>
+                </div>
+            </div>
+
+            <div class="col-sm-8">
+                <div class="basicInfo">
+
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <b>Email: </b> <span>@Model.User.Email</span>
+                        </li>
+                        <li class="list-group-item">
+                            <b>signUp Date: </b> <span>@Model.User.SignDate.ToString("dd MMM yyyy")</span>
+                        </li>
+
+                        @if (Model.IsAdmin == false && Model.IsFromWorkTeam == false)
+                        {
+                            <li class="list-group-item">Normal User</li>
+                        }
+                        else if (Model.IsAdmin)
+                        {
+                            <li class="list-group-item">Admin User</li>
+                        }
+                        @if (Model.IsFromWorkTeam)
+                        {
+                            <li class="list-group-item">WorkTeam</li>
+                        }
+                    </ul>
+
+                    @if (User.Identity.GetUserId() == Model.User.Id)
+                    {
+                        <div class="controlBtns text-center">
+                            <a href="/manage/changePassword/" class="siteBtn">
+                                <i class="glyphicon glyphicon-cog"></i> Change Password
+                            </a>
+
+                            <span>&nbsp; &nbsp; ||| &nbsp; &nbsp; </span>
+
+                            <label for="profilePictureId" class="siteBtn">
+                                <i class="glyphicon glyphicon-picture"></i> Change Profile Picture
+                            </label>
+
+                            <form id="changeProfilePicForm" action="/manage/ChangeProfilePicture" method="post" enctype="multipart/form-data" hidden>
+                                @Html.AntiForgeryToken()
+                                <input type="file" name="profilePicture" id="profilePictureId" />
+                            </form>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
+
+        @if (User.IsInRole(RoleName.Admins))
+        {
+            <div class="forAdmins">
+                <div class="row">
+                    <div class="col-lg-6">
+                        @if (Model.IsAdmin == false)
+                        {
+                            <form action="/Admins/AddUserToRole" method="post">
+                                <div>
+                                    <input type="hidden" name="userId" value="@Model.User.Id" />
+                                    <input type="hidden" name="roleName" value="@RoleName.Admins" />
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Add To Admins" class="btn siteBtn" />
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/Admins/RemoveUserFromRole" method="post">
+                                <div>
+                                    <input type="hidden" name="userId" value="@Model.User.Id" />
+                                    <input type="hidden" name="roleName" value="@RoleName.Admins" />
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Remove From Admins" class="btn siteBtn" />
+                                </div>
+                            </form>
+                        }
+                    </div>
+
+                    <div class="col-lg-6">
+                        @if (Model.IsFromWorkTeam == false)
+                        {
+                            <form action="/Admins/AddUserToRole" method="post">
+                                <div>
+                                    <input type="hidden" name="userId" value="@Model.User.Id" />
+                                    <input type="hidden" name="roleName" value="@RoleName.WorkTeam" />
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Add To WorkTeam" class="btn siteBtn" />
+                                </div>
+                            </form>
+                        }
+                        else
+                        {
+                            <form action="/Admins/RemoveUserFromRole" method="post">
+                                <div>
+                                    <input type="hidden" name="userId" value="@Model.User.Id" />
+                                    <input type="hidden" name="roleName" value="@RoleName.WorkTeam" />
+                                </div>
+
+                                <div class="form-group">
+                                    @Html.AntiForgeryToken()
+                                    <input type="submit" value="Remove From WorkTeam" class="btn siteBtn" />
+                                </div>
+                            </form>
+                        }
+                    </div>
+
+                </div>
+            </div>
+        }
+
+        @if (User.IsInRole(RoleName.Admins) || User.IsInRole(RoleName.WorkTeam))
+        {
+            <div class="categories text-center">
+                <h3>Categories Added by this user</h3>
+
+                <div class="row">
+                    @foreach (var category in Model.User.Categories)
+                    {
+                        <div class="col-sm-3">
+                            <div class="category text-center">
+                                <h4>@category.Name</h4>
+                                <h5><b>@category.Courses.Count </b>Courses</h5>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="courses text-center">
+                <h3>Courses Added by this user</h3>
+
+                <div class="row">
+                    @foreach (var course in Model.User.Courses)
+                    {
+                        <div class="col-sm-4">
+                            <div class="course text-center">
+                                <a href="/Courses/CourseDetails/@course.Id"></a>
+                                <img src="@course.CoursePicture" alt="Course Picture" />
+                                <h4>@course.Title</h4>
+                                <span>@course.Category.Name</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+        $(document).ready(function () {
+            $("#profilePictureId").on("change", function () {
+                $("form#changeProfilePicForm").submit();
+            });
+        });
+    </script>
+
+}
